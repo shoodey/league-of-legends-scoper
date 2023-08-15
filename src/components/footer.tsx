@@ -1,3 +1,4 @@
+import ClientInfo from "~/components/client-info";
 import { ThemeToggle } from "~/components/theme-toggle";
 
 export default function footer() {
