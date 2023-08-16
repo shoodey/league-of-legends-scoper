@@ -66,6 +66,7 @@ checksum = "f768393e7fabd388fe8409b13faa4d93ab0fef35db1508438dfdb066918bcf38"
 name = "app"
 version = "0.1.0"
 dependencies = [
+ "regex",
  "serde",
  "serde_json",
  "tauri",
