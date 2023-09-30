@@ -21,6 +21,7 @@
     "clsx": "^2.0.0",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.16",
+    "jotai": "^2.3.1",
     "next": "13.4.16",
     "next-themes": "^0.2.1",
     "postcss": "8.4.27",
@@ -29,6 +30,9 @@
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.6",
-    "typescript": "5.1.6"
+    "tauri-plugin-store-api": "github:tauri-apps/tauri-plugin-store#v1",
+    "typescript": "5.1.6",
+    "zod": "^3.22.2",
+    "zustand": "^4.4.1"
   }
 }

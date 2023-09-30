@@ -1,17 +1,27 @@
+import Link from "next/link";
 import ClientInfo from "~/components/client-info";
 import { ThemeToggle } from "~/components/theme-toggle";
 
 export default function footer() {
   return (
-    <>
-      <div className="flex items-center  align-middle z-10 fixed bottom-5 right-5">
-        <ThemeToggle />
-      </div>
-      <div className="flex items-center align-middle z-10 fixed bottom-5">
-        <p className="flex w-full justify-center border-b border-gray-300 dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-          <code className="font-mono text-xs">v1.0.0</code>
+    <footer className="border-t px-4 md:px-8">
+      <div className="my-2 flex items-center justify-between">
+        <p className="col-span-full row-start-2 text-center text-sm leading-loose text-muted-foreground md:flex-1 md:text-left">
+          Built by{" "}
+          <a
+            href="http://github.com/shoodey"
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium underline underline-offset-4"
+          >
+            Shoodey
+          </a>
+          .
         </p>
+        <div className="flex h-12 items-center justify-end">
+          <ThemeToggle />
+        </div>
       </div>
-    </>
+    </footer>
   );
 }

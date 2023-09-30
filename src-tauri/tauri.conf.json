@@ -6,12 +6,12 @@
     "distDir": "../out"
   },
   "package": {
-    "productName": "LeagueOfLegendsScoper",
+    "productName": "League Of Legends Scoper",
     "version": "0.1.0"
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "all": true
     },
     "bundle": {
       "active": true,
@@ -55,10 +55,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 900,
         "resizable": true,
-        "title": "League of Legends Scoper",
-        "width": 800
+        "title": "League Of Legends Scoper",
+        "width": 1400
       }
     ]
   }
