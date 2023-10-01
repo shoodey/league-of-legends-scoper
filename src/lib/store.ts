@@ -1,19 +1,22 @@
-import { atom } from "jotai";
 import { Store } from "tauri-plugin-store-api";
 import { create } from "zustand";
 import { z } from "zod";
 
-export const clientDataAtom = atom<
-  | {
-      appPort: number;
-      authToken: string;
-    }
-  | undefined
->(undefined);
-
 const tauriStore = new Store(".settings.dat");
 
+interface SummonerInfo {
+  displayName: string;
+  summonerId: string;
+  summonerLevel: number;
+  profileIconId: number;
+}
+
 interface SettingsStore {
+  // Summoner Info
+  summonerInfo: SummonerInfo | null;
+  setSummonerInfo: (summonerInfo: SummonerInfo) => void;
+
+  // Client Info
   appPort: string | null;
   authToken: string | null;
   setAppPort: (appPort: string) => Promise<void>;
@@ -22,6 +25,11 @@ interface SettingsStore {
 }
 
 export const useStore = create<SettingsStore>()((set) => ({
+  // Summoner Info
+  summonerInfo: null,
+  setSummonerInfo: (summonerInfo) => set({ summonerInfo }),
+
+  // Client Info
   appPort: null,
   authToken: null,
   setAppPort: async (appPort: string) => {
@@ -40,8 +48,6 @@ export const useStore = create<SettingsStore>()((set) => ({
 const hydrate = async () => {
   const appPort = await tauriStore.get("appPort");
   const authToken = await tauriStore.get("authToken");
-
-  console.log({ appPort, authToken });
 
   const parsedAppPort = z.string().nonempty().safeParse(appPort);
   const parsedAuthToken = z.string().nonempty().safeParse(authToken);

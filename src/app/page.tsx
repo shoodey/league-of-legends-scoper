@@ -17,15 +17,11 @@ export default function Home() {
   );
 
   const getClientData = () => {
-    invoke("get_client_data")
-      .then((data) => {
-        const values = data as string[];
-        setAppPort(values[0]);
-        setAuthToken(values[1]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    invoke("get_client_data").then((data) => {
+      const values = data as string[];
+      setAppPort(values[0]);
+      setAuthToken(values[1]);
+    });
   };
 
   if (!appPort || !authToken) {

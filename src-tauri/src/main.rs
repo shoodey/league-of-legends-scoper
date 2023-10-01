@@ -60,7 +60,7 @@ fn parse_client_app_port(output_string: String) -> String {
 
 fn parse_client_auth_token(output_string: String) -> String {
     // Define the regular expression pattern
-    let pattern = r"--remoting-auth-token=[0-9a-zA-Z\-]*";
+    let pattern = r"--remoting-auth-token=[0-9a-zA-Z\-\_]*";
 
     // Create a regular expression object
     let re = Regex::new(pattern).expect("Failed to create regex");
