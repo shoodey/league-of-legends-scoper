@@ -31,7 +31,7 @@ export default function Home() {
           Please make sure League of Legends is running...
         </p>
         <Button variant="destructive" onClick={getClientData}>
-          Get current client info
+          Refresh Client
         </Button>
       </div>
     );
@@ -46,7 +46,7 @@ export default function Home() {
         Authorization header: <code>Basic {btoa(`riot:${authToken}`)}</code>
       </p>
       <Button variant="default" onClick={getClientData}>
-        Get current client info
+        Refresh Client
       </Button>
     </div>
   );

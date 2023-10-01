@@ -7,11 +7,20 @@ import { shallow } from "zustand/shallow";
 import { useStore } from "~/lib/store";
 
 export const UserNav = () => {
-  const { appPort, authToken, summonerInfo, setSummonerInfo } = useStore(
+  const {
+    appPort,
+    authToken,
+    summonerInfo,
+    setAppPort,
+    setAuthToken,
+    setSummonerInfo,
+  } = useStore(
     (state) => ({
       appPort: state.appPort,
       authToken: state.authToken,
       summonerInfo: state.summonerInfo,
+      setAppPort: state.setAppPort,
+      setAuthToken: state.setAuthToken,
       setSummonerInfo: state.setSummonerInfo,
     }),
     shallow
@@ -36,12 +45,16 @@ export const UserNav = () => {
             profileIconId: data["profileIconId"],
           });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setAppPort("");
+          setAuthToken("");
+          console.log(err);
+        });
     },
     enabled: !!appPort && !!authToken,
   });
 
-  if (isLoading || !summonerInfo) return null;
+  if (!appPort || !authToken) return null;
 
   return (
     <>
@@ -55,24 +68,25 @@ export const UserNav = () => {
           />
           <span className="text-lg font-bold tracking-tight">{}</span>
         </Link>
-        {/* <MainNav items={marketingNavItems} /> */}
-        <div className="ml-auto flex items-center space-x-4">
-          <span className="font-mono bg-lime-400 rounded-md px-2 text-black">
-            {summonerInfo?.displayName}
-          </span>
-          <div className="relative">
-            <div className="absolute top-[48px] right-[12px] text-black font-bold font-mono text-sm bg-lime-400 rounded-md px-1">
-              {summonerInfo?.summonerLevel}
+        {!isLoading && summonerInfo && (
+          <div className="ml-auto flex items-center space-x-4">
+            <span className="font-mono bg-lime-400 rounded-md px-2 text-black">
+              {summonerInfo?.displayName}
+            </span>
+            <div className="relative">
+              <div className="absolute top-[48px] right-[12px] text-black font-bold font-mono text-sm bg-lime-400 rounded-md px-1">
+                {summonerInfo?.summonerLevel}
+              </div>
+              <Image
+                src={`https://raw.communitydragon.org/latest/game/assets/ux/summonericons/profileicon${summonerInfo?.profileIconId}.png`}
+                alt="logo"
+                width={60}
+                height={60}
+                className="rounded-full border-[2px] border-lime-400"
+              />
             </div>
-            <Image
-              src={`https://raw.communitydragon.org/latest/game/assets/ux/summonericons/profileicon${summonerInfo?.profileIconId}.png`}
-              alt="logo"
-              width={60}
-              height={60}
-              className="rounded-full border-[2px] border-lime-400"
-            />
           </div>
-        </div>
+        )}
       </nav>
     </>
   );
